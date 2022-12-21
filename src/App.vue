@@ -22,7 +22,6 @@ export default {
 <template>
   <div>
     <app-menu></app-menu>
-    <productos-table></productos-table>
-    <add-product></add-product>
+    <router-view></router-view>
   </div>
 </template>

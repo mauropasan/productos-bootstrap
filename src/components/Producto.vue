@@ -42,7 +42,7 @@ export default {
                     class="bi bi-arrow-up"></i></button>
             <button type="button" class="btn btn-dark mx-1" @click="lowerProdUnits"><i
                     class="bi bi-arrow-down"></i></button>
-            <button type="button" class="btn btn-dark mx-1" @click="editProd"><i
+            <button type="button" class="btn btn-dark mx-1" @click="$router.push(`/edit-product/${product.id}`)"><i
                     class="bi bi-pencil-square"></i></button>
             <button type="button" class="btn btn-danger mx-1" @click="delProd"><i class="bi bi-trash"></i></button>
         </td>

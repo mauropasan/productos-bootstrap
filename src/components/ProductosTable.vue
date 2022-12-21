@@ -20,9 +20,9 @@ export default {
 </script>
 
 <template>
-  <h1>Listado de productos</h1>
+  <h1 class="bg-dark text-white w-75 m-auto mb-3">Listado de productos</h1>
   <template v-if="products.length">
-    <table class="table">
+    <table class="table w-75 m-auto">
       <thead class="bg-dark text-white">
         <th>Id</th>
         <th>Nombre</th>
@@ -36,8 +36,8 @@ export default {
         <producto v-for="product in products" :key="product.id" :product="product"></producto>
       </tbody>
     </table>
-    <div class="row">
-      <span class="col-6">Productos: {{ products.length }}</span><span class="col-6">Importe total: {{ totalImport }}</span>
+    <div class="row w-75 m-auto">
+      <span class="col-6">Productos: {{ products.length }}</span><span class="col-6">Importe total: {{ totalImport }} €</span>
     </div>
   </template>
   <p v-else>No hay productos en la tienda</p>

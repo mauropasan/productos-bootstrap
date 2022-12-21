@@ -12,21 +12,21 @@
       "name": "Silla de ordenador",
       "category": 1,
       "price": 60.5,
-      "units": 5
+      "units": 4
     },
     {
       "id": 3,
       "name": "Mesa de impresora",
       "category": 1,
-      "price": 45.8,
-      "units": 2
+      "price": 50,
+      "units": 1
     },
     {
       "id": 4,
       "name": "Mesa gaming",
       "category": "1",
       "price": "40",
-      "units": 5
+      "units": 1
     }
   ]
 }

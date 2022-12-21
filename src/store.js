@@ -57,4 +57,12 @@ export const store = {
             alert(err)
         }
     },
+    async getProduct(id) {
+        try {
+            const response = await axios.get(`${SERVER}/products/${id}`)
+            return response.data
+        } catch(err) {
+            alert(err)
+        }
+    }
 }
