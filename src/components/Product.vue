@@ -12,9 +12,6 @@ export default {
         lowerProdUnits() {
             store.editProd(this.product, this.product.units - 1)
         },
-        editProd() {
-            store.editProd(this.product)
-        },
         delProd() {
             if (confirm(`¿Seguro que quieres borrar el producto? (${this.product.name})`)) {
                 store.delProd(this.product.id)
@@ -37,14 +34,21 @@ export default {
         <td>{{ product.units }}</td>
         <td>{{ product.price }} €</td>
         <td>{{ productImport.toFixed(2) }} €</td>
-        <td>
-            <button type="button" class="btn btn-dark mx-1" @click="raiseProdUnits"><i
+        <td class="buttons">
+            <button type="button" class="btn btn-dark" @click="raiseProdUnits" :disabled="product.units >= 100"><i
                     class="bi bi-arrow-up"></i></button>
-            <button type="button" class="btn btn-dark mx-1" @click="lowerProdUnits"><i
+            <button type="button" class="btn btn-dark" @click="lowerProdUnits" :disabled="product.units <= 0"><i
                     class="bi bi-arrow-down"></i></button>
-            <button type="button" class="btn btn-dark mx-1" @click="$router.push(`/edit-product/${product.id}`)"><i
+            <button type="button" class="btn btn-dark" @click="$router.push(`/edit-product/${product.id}`)"><i
                     class="bi bi-pencil-square"></i></button>
-            <button type="button" class="btn btn-danger mx-1" @click="delProd"><i class="bi bi-trash"></i></button>
+            <button type="button" class="btn btn-danger" @click="delProd"><i class="bi bi-trash"></i></button>
         </td>
     </tr>
 </template>
+
+<style>
+    .buttons {
+        display: flex;
+        gap: 5px;
+    }
+</style>

@@ -7,7 +7,8 @@ export const store = {
     debug: true,
     state: reactive({
         products: [],
-        categories: []
+        categories: [],
+        messages: []
     }),
     async loadProducts() {
         try {
@@ -17,7 +18,7 @@ export const store = {
                 responseProducts.data.forEach(product => this.state.products.push(product))
             }
         } catch (err) {
-            alert(err)
+            this.setMessage(err)
         }
     },
     async addProduct(product) {
@@ -30,7 +31,7 @@ export const store = {
             })
             this.state.products.push(response.data)
         } catch(err) {
-            alert(err)
+            this.setMessage(err)
         }
     },
     async editProd(product, units) {
@@ -44,7 +45,7 @@ export const store = {
             })
             this.state.products.splice(this.state.products.findIndex(productToFind => productToFind.id === product.id), 1, response.data)
         } catch (err) {
-            alert(err)
+            this.setMessage(err)
         }
 
     },
@@ -54,7 +55,7 @@ export const store = {
             let index = this.state.products.findIndex(product => product.id === id)
             this.state.products.splice(index, 1)
         } catch (err) {
-            alert(err)
+            this.setMessage(err)
         }
     },
     async getProduct(id) {
@@ -62,7 +63,65 @@ export const store = {
             const response = await axios.get(`${SERVER}/products/${id}`)
             return response.data
         } catch(err) {
-            alert(err)
+            this.setMessage(err)
         }
+    },
+    async addCat(category) {
+        try {
+            const response = await axios.post(`${SERVER}/categories`, {
+                name: `${category.name}`,
+                description: `${category.description}`,
+            })
+            this.state.categories.push(response.data)
+        } catch(err) {
+            this.setMessage(err)
+        }
+    },
+    async editCat(category) {
+        try {
+            const response = await axios.put(`${SERVER}/categories/${category.id}`, {
+                name: category.name,
+                description: category.description,
+            })
+            this.state.categories.splice(this.state.categories.findIndex(categoryToFind => categoryToFind.id === category.id), 1, response.data)
+        } catch (err) {
+            this.setMessage(err)
+        }
+
+    },
+    async delCat(id) {
+        try {
+            if (this.hasProductsInCategory(id)) {
+                await axios.delete(`${SERVER}/categories/${id}`)
+                let index = this.state.categories.findIndex(category => category.id === id)
+                this.state.categories.splice(index, 1)
+            } else {
+                throw `No se puede eliminar una categoría con productos`
+            }
+        } catch (err) {
+            this.setMessage(err)
+        }
+    },
+    async getCategory(id) {
+        try {
+            const response = await axios.get(`${SERVER}/categories/${id}`)
+            return response.data
+        } catch(err) {
+            this.setMessage(err)
+        }
+    },
+    hasProductsInCategory(catId) {
+        this.state.products.forEach( product => {
+            if(Number(product.category) === Number(catId)) {
+                return true
+            }
+        })
+        return false
+    },
+    setMessage(message) {
+        this.state.messages.push(message)
+        setTimeout(() => {
+            this.state.messages.shift(message)
+        }, 3000)
     }
 }

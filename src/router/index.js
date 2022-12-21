@@ -1,12 +1,15 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import ProductosTable from '../components/ProductosTable.vue'
+import ProductsTable from '../components/ProductsTable.vue'
 import AddProduct from '../components/AddProduct.vue'
+import CategoriesTable from '../components/CategoriesTable.vue'
+import AddCategory from '../components/AddCategory.vue'
+import AboutUs from '../components/AboutUs.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'ProductosTable',
-    component: ProductosTable
+    name: 'ProductsTable',
+    component: ProductsTable
   },
   {
     path: '/add-product',
@@ -18,6 +21,27 @@ const routes = [
     name: 'EditProduct',
     component: AddProduct,
     props: true
+  },
+  {
+    path: '/categories',
+    name: 'Categories',
+    component: CategoriesTable
+  },
+  {
+    path: '/add-category',
+    name: 'AddCategory',
+    component: AddCategory
+  },
+  {
+    path: '/edit-category/:id',
+    name: 'EditCategory',
+    component: AddCategory,
+    props: true
+  },
+  {
+    path: '/about-us',
+    name: 'AboutUs',
+    component: AboutUs
   }
 ]
 

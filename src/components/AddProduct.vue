@@ -19,7 +19,7 @@ export default {
         addProduct() {
             if (this.product.name !== "" && this.product.category !== "" && this.product.units !== "" && this.product.price !== "") {
                 if (!this.id) {
-                    store.addProduct({ name: this.name, category: this.category, units: this.units, price: this.price })
+                    store.addProduct({ name: this.product.name, category: this.product.category, units: this.product.units, price: this.product.price })
                 } else {
                     store.editProd(this.product)
                 }
@@ -43,11 +43,11 @@ export default {
         <form @submit.prevent="addProduct">
             <div class="my-3">
                 <label for="name">Nom: </label><br />
-                <input name="name" id="name" v-model="product.name" type="text" /><br />
+                <input class="w-100" name="name" id="name" v-model="product.name" type="text" /><br />
             </div>
             <div class="my-3">
                 <label for="category">Categoría: </label><br />
-                <select class="w-50" v-model="product.category">
+                <select class="w-100" v-model="product.category">
                     <option value="">---</option>
                     <category-list v-for="category in categories" :key="category.id"
                         :category="category"></category-list>
@@ -55,11 +55,11 @@ export default {
             </div>
             <div class="my-3">
                 <label for="units">Unidades: </label><br/>
-                <input name="units" id="units" v-model="product.units" type="number" min="0" max="100" step="1" /><br />
+                <input class="w-100" name="units" id="units" v-model="product.units" type="number" min="0" max="100" step="1" /><br />
             </div>
             <div class="my-3">
                 <label for="price">Precio: </label><br/>
-                <input name="price" id="price" v-model="product.price" type="number" min="0" step="0.01" /><br />
+                <input class="w-100" name="price" id="price" v-model="product.price" type="number" min="0" step="0.01" /><br />
             </div>
             <input v-if="id" class="btn btn-dark" type="submit" value="Editar producto" />
             <input v-else class="btn btn-dark" type="submit" value="Añadir producto" />

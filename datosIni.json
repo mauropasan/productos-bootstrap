@@ -1,9 +1,9 @@
 {
   "categories": [
     {
-      "id": 1,
-      "name": "Mobiliario",
-      "description": "Muebles de oficina"
+      "name": "Mobliliario",
+      "description": "Muebles",
+      "id": 1
     }
   ],
   "products": [
@@ -24,9 +24,9 @@
     {
       "id": 4,
       "name": "Mesa gaming",
-      "category": "1",
+      "category": 1,
       "price": "40",
-      "units": 1
+      "units": 4
     }
   ]
 }

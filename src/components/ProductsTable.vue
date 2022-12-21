@@ -1,10 +1,10 @@
 <script>
 import { store } from '../store'
-import Producto from './Producto.vue'
+import Product from './Product.vue'
 
 export default {
   components: {
-    Producto,
+    Product,
   },
   data() {
     return {
@@ -33,14 +33,14 @@ export default {
         <th>Acciones</th>
       </thead>
       <tbody class="table-striped">
-        <producto v-for="product in products" :key="product.id" :product="product"></producto>
+        <product v-for="product in products" :key="product.id" :product="product"></product>
       </tbody>
     </table>
-    <div class="row w-75 m-auto">
+    <div class="row w-75 m-auto bg-dark text-white text-center p-1">
       <span class="col-6">Productos: {{ products.length }}</span><span class="col-6">Importe total: {{ totalImport }} €</span>
     </div>
   </template>
-  <p v-else>No hay productos en la tienda</p>
+  <p v-else class="w-75 m-auto">No hay productos en la tienda</p>
 </template>
 
 <style>
